@@ -1,6 +1,7 @@
 var exec = require("cordova/exec");
 var PLUGIN_NAME = "FirebaseAnalytics";
 
+/*
 module.exports = {
     logEvent: function(name, params) {
         return new Promise(function(resolve, reject) {
@@ -70,3 +71,8 @@ module.exports = {
         });
     }
 };
+*/
+
+exports.requestTrackingAuthorization = function(showInformation, title, message, buttonTitle, success, error) {
+    exec(success, error, 'FirebaseAnalytics', 'requestTrackingAuthorization', [showInformation, title, message, buttonTitle]);
+}
