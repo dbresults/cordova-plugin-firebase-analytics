@@ -49,6 +49,7 @@ module.exports = {
             exec(resolve, reject, PLUGIN_NAME, "setDefaultEventParameters", [defaults || {}]);
         });
     },
+    /*
     requestTrackingAuthorization: function(showInformation, title, message, buttonTitle) {
         return new Promise(function(resolve, reject) {
 
@@ -69,4 +70,24 @@ module.exports = {
             exec(resolve, reject, PLUGIN_NAME, "requestTrackingAuthorization", [showInformation, title, message, buttonTitle]);
         });
     }
+    */
 };
+
+exports.requestTrackingAuthorization = function(showInformation, title, message, buttonTitle, success, error) {
+
+    if(showInformation) {
+        if (typeof title !== "string") {
+            return error(new TypeError("Title property name must be a string"));
+        }
+
+        if (typeof message !== "string") {
+            return error(new TypeError("Message property value must be a string"));
+        }
+
+        if (typeof buttonTitle !== "string") {
+            return error(new TypeError("Button title property value must be a string"));
+        }
+    }
+
+    exec(success, error, PLUGIN_NAME, 'requestTrackingAuthorization', [showInformation, title, message, buttonTitle]);
+}
