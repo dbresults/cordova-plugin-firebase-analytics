@@ -53,9 +53,3 @@ module.exports = {
         exec(success, error, 'FirebaseAnalytics', 'requestTrackingAuthorization', [showInformation, title, message, buttonTitle]);
     }
 };
-
-/*
-exports.requestTrackingAuthorization = function(showInformation, title, message, buttonTitle, success, error) {
-    exec(success, error, 'FirebaseAnalytics', 'requestTrackingAuthorization', [showInformation, title, message, buttonTitle]);
-}
-*/
