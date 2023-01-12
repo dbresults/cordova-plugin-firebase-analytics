@@ -50,6 +50,6 @@ module.exports = {
         });
     },
     requestTrackingAuthorization: function(showInformation, title, message, buttonTitle, success, error) {
-        exec(success, error, 'FirebaseAnalytics', 'requestTrackingAuthorization', [showInformation, title, message, buttonTitle]);
+        exec(success, error, PLUGIN_NAME, 'requestTrackingAuthorization', [showInformation, title, message, buttonTitle]);
     }
 };
