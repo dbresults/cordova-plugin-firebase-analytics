@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 The changes documented here do not include those from the original repository.
 
 ## [Unreleased]
+- Feat: update firebase core version (https://outsystemsrd.atlassian.net/browse/RMET-2451).
+
+## 5.0.0-OS9
 
 ### 2023-01-12
 - Feat: Return user's response to prompt [RMET-2112](https://outsystemsrd.atlassian.net/browse/RMET-2112)
