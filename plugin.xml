@@ -1,7 +1,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="cordova-plugin-firebase-analytics"
-      version="5.0.0-OS10">
+      version="5.0.0-OS11">
 
     <name>FirebaseAnalyticsPlugin</name>
     <description>Cordova plugin for Firebase Analytics</description>
@@ -38,6 +38,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             </feature>
         </config-file>
 
+        <dependency id="cordova-plugin-add-swift-support" url="https://github.com/OutSystems/cordova-plugin-add-swift-support.git#2.0.3-OS1"/>
+
         <!--
             use a bit hacky method to set boolean value as a string:
             https://developer.apple.com/documentation/foundation/nsstring/1409420-boolvalue?preferredLanguage=occ
@@ -55,6 +57,23 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <header-file src="src/ios/FirebaseAnalyticsPlugin.h" />
         <source-file src="src/ios/FirebaseAnalyticsPlugin.m" />
 
+        <source-file src="src/ios/Common/Extensions/StringConvertable.swift" target-dir="Common/Extensions" />
+        <source-file src="src/ios/Common/OSFANLDefaultValues.swift" target-dir="Common" />
+        <source-file src="src/ios/Common/OSFANLError.swift" target-dir="Common" />
+        <source-file src="src/ios/Common/OSFANLInputDataFieldKey.swift" target-dir="Common" />
+
+        <source-file src="src/ios/InputTransformer/OSFANLInputTransformable.swift" target-dir="InputTransformer" />
+        <source-file src="src/ios/InputTransformer/OSFANLInputTransformableModel.swift" target-dir="InputTransformer" />
+        <source-file src="src/ios/InputTransformer/OSFANLInputTransformer.swift" target-dir="InputTransformer" />
+
+        <source-file src="src/ios/Manager/OSFANLManageable.swift" target-dir="Manager" />
+        <source-file src="src/ios/Manager/OSFANLManager.swift" target-dir="Manager" />
+        <source-file src="src/ios/Manager/OSFANLManager+EventValidationRules.swift" target-dir="Manager" />
+        <source-file src="src/ios/Manager/OSFANLManagerFactory.swift" target-dir="Manager" />
+        <source-file src="src/ios/Manager/OSFANLOutputModel.swift" target-dir="Manager" />
+
+        <source-file src="src/ios/Validator/OSFANLEventValidator.swift" target-dir="Validator" />
+
         <podspec>
             <config>
                 <source url="https://cdn.cocoapods.org/"/>
@@ -69,11 +88,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <platform name="android">
         <preference name="ANDROID_FIREBASE_ANALYTICS_VERSION" default="21.1.1"/>
 
-        <hook type="before_plugin_install" src="hooks/android/build_gradle_add_dependency.js" />
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="FirebaseAnalytics">
-                <param name="android-package" value="by.chemerisuk.cordova.firebase.FirebaseAnalyticsPlugin" />
+                <param name="android-package" value="com.outsystems.plugins.firebase.analytics.FirebaseAnalyticsPlugin" />
                 <param name="onload" value="$ANALYTICS_COLLECTION_ENABLED" />
             </feature>
         </config-file>
@@ -92,8 +110,20 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <framework src="com.google.firebase:firebase-analytics:$ANDROID_FIREBASE_ANALYTICS_VERSION" />
         <framework src="build.gradle" custom="true" type="gradleReference" />
 
-        <source-file src="src/android/FirebaseAnalyticsPlugin.java"
-            target-dir="src/by/chemerisuk/cordova/firebase/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/FirebaseAnalyticsPlugin.java" target-dir="src/com/outsystems/plugins/firebase/analytics/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/model/OSFANLBundle+putAny.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/model/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/model/OSFANLJSONArray+extension.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/model/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/model/OSFANLDefaultValues.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/model/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/model/OSFANLError.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/model/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/model/OSFANLEventOutputModel.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/model/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/model/OSFANLInputDataFieldKey.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/model/" />
+
+        <source-file src="src/android/com/outsystems/firebase/analytics/validator/OSFANLEventItemsValidator.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/validator/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/validator/OSFANLEventParameterValidator.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/validator/" />
+        <source-file src="src/android/com/outsystems/firebase/analytics/validator/OSFANLMinimumRequired.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/validator/" />
+
+        <source-file src="src/android/com/outsystems/firebase/analytics/OSFANLManager.kt" target-dir="app/src/main/kotlin/com/outsystems/firebase/analytics/" />
+
     </platform>
 
 </plugin>
