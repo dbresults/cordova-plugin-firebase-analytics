@@ -1,7 +1,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="cordova-plugin-firebase-analytics"
-      version="5.0.0-OS11">
+      version="5.0.0-OS12">
 
     <name>FirebaseAnalyticsPlugin</name>
     <description>Cordova plugin for Firebase Analytics</description>
@@ -105,7 +105,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="$AUTOMATIC_SCREEN_REPORTING_ENABLED" />
         </config-file>
 
-        <dependency id="cordova-support-android-plugin" version="~1.0.0"/>
+        <dependency id="cordova-support-android-plugin" version="2.0.4"/>
 
         <framework src="com.google.firebase:firebase-analytics:$ANDROID_FIREBASE_ANALYTICS_VERSION" />
         <framework src="build.gradle" custom="true" type="gradleReference" />
